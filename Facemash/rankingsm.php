@@ -56,7 +56,7 @@ function executeQuery($query){
                 <tr>
                     
                     <td><?php echo $row[5];?></td>
-                    <td><?php echo "<a href = 'profilem.php?profile=$row[0]' style = 'text-decoration: none; color: black;'><img src='m_images/".$row['filename']."' style  = 'width:75%; height: 75%;'></a>";?></td>
+                    <td><?php echo "<a href = 'profilem.php?profile=$row[0]' style = 'text-decoration: none; color: black;'><img src='m_images/".$row['filename']."' style  = 'width:100%; height: 100%;'></a>";?></td>
                     <td><a href = 'profilem.php?profile=<?=$row[0]?>' style = 'text-decoration: none; color: black;'><?= str_replace(".png", "", $row[1]);?></a></td>
                     <td><?php echo $row[2];?></td>
                     <td><?php echo $row[3];?></td>
