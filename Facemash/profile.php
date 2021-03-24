@@ -54,11 +54,11 @@ if($_GET['profile']){
     echo "<h2 style='color: black; display: block; width: 90%; height: auto; padding-top: 10%; padding: 5%;'>$profileName</h2>";
     echo "<img src='images/$profileFileName' style='position: relative; width: 50%; height: auto;'>";
     echo"<br><br>";
-    echo "<h4 style='color: black; background-color: white;'>Stats:</h4>";
-    echo "<h4 style='width: auto; height: auto;'>Rank: ", $profile->rank, "</h4>";
-    echo "<h4>Score: ", $profile->score, "</h4>";
-    echo "<h4>Wins: ", $profile->wins, "</h4>";
-    echo "<h4>Losses: ", $profile->losses, "</h4>";
+    echo "<h4 style='color: black; background-color: white; font-size: 24px;'>Stats:</h4>";
+    echo "<h4 style='width: auto; height: auto;font-size: 24px'>Rank: ", $profile->rank, "</h4>";
+    echo "<h4 style='font-size: 24px;'>Score: ", $profile->score, "</h4>";
+    echo "<h4 style='font-size: 24px;'>Wins: ", $profile->wins, "</h4>";
+    echo "<h4 style='font-size: 24px;'>Losses: ", $profile->losses, "</h4>";
     
     
     
@@ -82,24 +82,54 @@ if($_GET['profile']){
             padding-inline-start: 0;
         }
         img{
-            display:block;
+            display: inline-block;
             margin-left: auto;
             margin-right: auto;
-            width: auto;
-            height: 20%;
+            width:100%; height: auto; object-fit: contain; overflow: hidden;
             padding: 0;
         }
+        h4{
+            text-align: center;
+            font-size: 24px;
+        }
         p{
-            display: block;
+            display: inline-block;
             margin-left: auto;
             margin-right: auto;
             text-align: center;
             color: black;
+            width: 25%;
+        }
+        tr{
+            height: 30%;
         }
         td{
             padding: 0;
             width: 30%;
-            height: auto;
+            height: 20%;
+        }
+        .row{
+            height: 10%;
+            width: 100%;
+            display: inline-block;
+            margin-bottom: 10%;
+        }
+        @media(max-width: 1000px){
+            p{
+                font-size: 10px;
+            }
+            .row{
+                margin-bottom: -5%;
+            }
+            h4{
+                font-size: 16px !important;
+            }
+        }
+
+        @media(max-width: 800px){
+            h2{
+                font-size: 16px !important;
+            }
         }
         body, html {font-family:Arial, Helvetica, sans-serif;width:100%;margin:0;padding:0;text-align:center; background-color: #002892}
 h1 {background-color: #DC4548;color:white;padding:20px 0;margin:0; border-bottom: 1px solid black;}
@@ -141,8 +171,8 @@ li:hover{
     </head>
 <body>
             <?php
+
     echo"<h2 style='color: black;'>Recent Matches</h2>";
-    echo "<table style='margin: 0; padding: 0; width: 60%;'>";
     for($i = 0; $i < count($recentMatches); $i++){
         $winnerid = $recentMatches[$i]->winner;
         $loserid = $recentMatches[$i]->loser;
@@ -161,20 +191,20 @@ li:hover{
         $loserName = str_replace(".png", "", $tempLose);
         
         if($winnerid == $id){
-            echo "<tr><td valign='top'><img src= images/$winnerFile></td><td valign='top'><p style='margin-top: 25%; color: green;'>Won Against</p></td><td valign='top'><img src = images/$loserFile></td></tr>";
-        echo "<tr><td valign='top'><p>$winnerName</p></td>";
+            echo "<div class = 'row'><td valign='top'><div style='display: inline-block; width: 20%;'><img src= images/$winnerFile></td></div><td valign='top'><p style='margin-top: 25%; color: green;'>Won Against</p></td><td valign='top'><div style='display: inline-block; width: 20%;'><img src = images/$loserFile></td></div></div>";
+        echo "<div class = 'row'><td valign='top'><p style = 'padding-right: 10%;'>$winnerName</p></td>";
         echo "<td></td>";
-        echo "<td valign='top'><p>$loserName</p></td></tr>";
+        echo "<td valign='top'><p style='padding-left: 10%;'>$loserName</p></td></div>";
         }
         else{
-            echo "<tr><td valign='top'><img src= images/$loserFile></td><td valign='top'><p style='margin-top: 25%; color: red;'>Lost Against</p></td><td valign='top'><img src = images/$winnerFile></td></tr>";
-        echo "<tr><td valign='top'><p>$loserName</p></td>";
+            echo "<div class = 'row'><td valign='top'><div style='display: inline-block; width: 20%;'><img src= images/$loserFile></td></div><td valign='top'><p style='margin-top: 25%; color: red;'>Lost Against</p></td><td valign='top'><div style='display: inline-block; width: 20%;'><img src = images/$winnerFile></td></div></div>";
+        echo "<div class = 'row'><td valign='top'><p style = 'padding-right: 10%;'>$loserName</p></td>";
         echo "<td></td>";
-        echo "<td valign='top'><p>$winnerName</p></td></tr>";
+        echo "<td valign='top'><p style='padding-left: 10%;'>$winnerName</p></td></div>";
         }
         
     }
-    echo "</table></center>";
+    echo "</center>";
             ?>
         
     
